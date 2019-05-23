@@ -76,8 +76,9 @@ class NaivePackageNameIdentifier(object):
             # Download stopwords since they are not available.
             nltk.download('stopwords')
             stop_words.update(stopwords.words('english'))
-
-        regexp = re.compile('[A-Z][A-Za-z0-9-:]*')
+        # modified the logic to include keywords that have capital letter anywhere, not necessarily as the first character.
+        # Also, two words separated by hyphen are also important, even when there are no capital letters
+        regexp = re.compile('[A-Za-z0-9-:]*[A-Z][A-Za-z0-9-:]*|[A-Za-z0-9]+[-][A-Za-z0-9]+')
         suspects = regexp.findall(sentence)
 
         results = [x.lower() for x in suspects if x.lower() not in stop_words]

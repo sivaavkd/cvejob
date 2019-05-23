@@ -32,7 +32,7 @@ def validate_cve(cve_doc, exclude_checks=None):
     """
     checks = [
         NotUnsupportedFileExtensionCheck,
-        NotUnderAnalysisCheck,
+        # NotUnderAnalysisCheck,
         IsSupportedGitHubLanguageCheck,
         AffectsApplicationCheck,
         NotUnexpectedSiteInReferencesCheck
